@@ -1,6 +1,6 @@
 Name:           chromaprint
 Version:        1.5.1
-Release:        1
+Release:        2
 Summary:        Library implementing the AcoustID fingerprinting
 License:        GPLv2+
 URL:            http://www.acoustid.org/chromaprint
@@ -43,9 +43,9 @@ The library exposes a simple C API. The documentation for the C API can be found
 
 %prep
 %autosetup -n %{name}-%{version} -p1
-%{cmake} -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Release -DBUILD_TOOLS=OFF
 
 %build
+%{cmake} -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Release -DBUILD_TOOLS=OFF -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX
 %make_build
 
 %install
@@ -68,6 +68,9 @@ The library exposes a simple C API. The documentation for the C API can be found
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Fri Apr 21 2023 jammyjellyfish <jammyjellyfish255@outlook.com> - 1.5.1-2
+- Support specify CC
+
 * Wed Jan 19 2022 SimpleUpdate Robot <tc@openeuler.org> - 1.5.1-1
 - Upgrade to version 1.5.1
 
